@@ -1,0 +1,30 @@
+<div class="container">
+  <h1> Movie Recommendation System</h1>
+  <form (ngSubmit)="onSubmit()" [formGroup]="movieForm" >
+    <label for="genre">Preferred Genre:</label>
+    <select id="genre" formControlName="genre" name="genre" >
+      <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
+    </select>
+
+    <label for="duration">Preferred Movie Duration:</label>
+    <select id="duration" formControlName="duration" name="duration" >
+      <option *ngFor="let duration of durations" [value]="duration">{{ duration }}</option>
+    </select>
+
+    <label for="mood">Mood:</label>
+    <select id="mood" formControlName="mood" >
+      <option *ngFor="let mood of moods" [value]="mood">{{ mood }}</option>
+    </select>
+
+    <button type="submit" [disabled]="!movieForm.valid">Get Recommendation</button>
+  </form>
+  <!-- Recommended movie -->
+  <h2>Recommendation:</h2>
+  <span *ngIf="norecord==true">No reccomendation found</span>
+  <div *ngIf="norecord!=true">
+    <div *ngFor="let item of recommendation">
+      <p>{{ item.title }}</p>
+    </div>
+  </div>
+
+</div>
