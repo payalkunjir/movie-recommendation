@@ -19,6 +19,14 @@ db.connect((err) => {
   console.log('Connected to MySQL Database!');
 });
 
+// Serve static files from 'public' folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Redirect all other routes to index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 app.post('/recommend', (req, res) => {
   const { genre, duration, mood } = req.body;
   const query = `SELECT * FROM movies WHERE genre = ? AND duration = ? AND mood = ?; `;
