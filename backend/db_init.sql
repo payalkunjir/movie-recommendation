@@ -1,7 +1,7 @@
 
-CREATE DATABASE movies_db;
+CREATE DATABASE newwebapp;
 
-USE movies_db;
+USE newwebapp;
 
 CREATE TABLE movies (
   id INT AUTO_INCREMENT PRIMARY KEY,

@@ -10,21 +10,22 @@ const http = require('http').createServer(app);
 require('dotenv').config();
 
 const db = mysql.createConnection({
-  host: process.env.DB_HOST || 'webapp-db-instance.c74ey066ureu.eu-north-1.rds.amazonaws.com',
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASS || 'root@123',
-  database: process.env.DB_NAME || 'movies_db'
+  host: process.env.DB_HOST || 'newwebapp.c74ey066ureu.eu-north-1.rds.amazonaws.com',
+  user: process.env.DB_USER || 'admin',
+  password: process.env.DB_PASS || 'Kunjir28',
+  database: process.env.DB_NAME || 'newwebapp'
 });
 
 db.connect((err) => {
-  if (err) throw err;
+  if (err) {
+    console.error('Database connection failed:', err.message);
+    return;
+  }
   console.log('Connected to MySQL Database!');
 });
 app.enable('trust-proxy');
 app.use(cors({ origin: '*' })); // Allow all origins (Not recommended for production)
 
-// Serve static files from 'public' folder
-app.use(express.static(path.join(__dirname, 'public')));
 
 // Redirect all other routes to index.html
 app.get('*', (req, res) => {
@@ -46,4 +47,4 @@ app.post('/recommend', (req, res) => {
   });
 });
 
-http.listen(3000, () => console.log('Server running on port 3000'));
+http.listen(5000, () => console.log('Server running on port 5000'));
