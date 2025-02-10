@@ -27,10 +27,6 @@ app.enable('trust-proxy');
 app.use(cors({ origin: '*' })); // Allow all origins (Not recommended for production)
 
 
-// Redirect all other routes to index.html
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
 
 app.post('/recommend', (req, res) => {
   const { genre, duration, mood } = req.body;
